@@ -1,0 +1,15 @@
+import mongoose from "mongoose";
+import env from "./env";
+
+const dbConnect = async () => {
+  try {
+    await mongoose.connect(env.DBURI);
+
+    console.log("MongoDB connected successfully!");
+  } catch (error) {
+    console.error("MongoDB connection failed:", error.message);
+    process.exit(1);
+  }
+};
+
+export default dbConnect;
