@@ -129,20 +129,20 @@ export const loginController = async (request, response) => {
     response.cookie("jwt", JWTToken, {
       maxAge: 100 * 60 * 60 * 12,
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none",
     });
 
     return response.status(200).json({
       success: true,
       message: "You are logged in Sucessfulyy",
       role: user.role,
-      user:{
-        _id:user._id,
-        name:user.name,
-        role:user.role,
-        email:user.email
-      }
+      user: {
+        _id: user._id,
+        name: user.name,
+        role: user.role,
+        email: user.email,
+      },
     });
   } catch (error) {
     console.log(error.message);
